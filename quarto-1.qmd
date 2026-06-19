@@ -4,3 +4,45 @@ author: "Pushpendu Biswas"
 format: html
 ---
 
+```{r}
+#| echo: false
+#| message: false
+library(tidyverse)
+library(palmerpenguins)
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+ggplot(data = penguins, 
+       aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point(aes(shape = species), size = 3, alpha = 0.8) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, size = 1.2, show.legend = FALSE) +
+  scale_color_manual(values = c("Adelie" = "#FF8C00", "Chinstrap" = "#9932CC", "Gentoo" = "#008B8B")) +
+  labs(
+    title = "Penguin Bill Dimensions by Species",
+    subtitle = "Relationship between bill length and bill depth for Adelie, Chinstrap, and Gentoo Penguins",
+    x = "Bill Length (mm)",
+    y = "Bill Depth (mm)",
+    color = "Species",
+    shape = "Species",
+    caption = "Source: Palmer Station LTER | palmerpenguins package"
+  ) +
+  theme_minimal(base_family = "sans") +
+  theme(
+    plot.title = element_text(face = "bold", size = 16, color = "#2F4F4F", margin = margin(b = 6)),
+    plot.subtitle = element_text(size = 11, color = "#696969", margin = margin(b = 15)),
+    plot.caption = element_text(size = 8, color = "#888888", face = "italic", margin = margin(t = 15)),
+    axis.title = element_text(face = "bold", color = "#2F4F4F"),
+    axis.text = element_text(color = "#4F4F4F"),
+    panel.grid.major = element_line(color = "#ECECEC", linewidth = 0.5),
+    panel.grid.minor = element_blank(),
+    legend.position = "right",
+    legend.title = element_text(face = "bold", color = "#2F4F4F"),
+    legend.text = element_text(color = "#4F4F4F"),
+    plot.background = element_rect(fill = "#FAFAFA", color = NA),
+    panel.background = element_rect(fill = "#FAFAFA", color = NA),
+    legend.background = element_rect(fill = "#FAFAFA", color = NA)
+  )
+```
